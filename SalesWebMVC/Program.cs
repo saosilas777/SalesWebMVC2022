@@ -3,7 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using SalesWebMVC.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SalesWebMVCContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SalesWebMVCContext") ?? throw new InvalidOperationException("Connection string 'SalesWebMVCContext' not found.")));
+    options.UseMySql("server=localhost;initial catalog=saleswebmvcappdb;userid=root;password=102030",
+    ServerVersion.Parse("8.0.29-mysql")));
+// ""
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
